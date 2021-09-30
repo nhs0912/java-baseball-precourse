@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class StringTest {
 
     @Test
@@ -11,6 +13,14 @@ public class StringTest {
     public void divideTest(){
         String inputText = "1,2";
         String[] resultTexts = inputText.split(",");
-        Assertions.assertThat(resultTexts).contains("1","2");
+        assertThat(resultTexts).contains("1","2");
+    }
+
+    @Test
+    @DisplayName("1을 ,로 split하였을 때 분리 되는지 확인하는 테스트")
+    public void divideTest2(){
+        String inputText = "1";
+        String[] resultTexts = inputText.split(",");
+        assertThat(resultTexts).containsExactly("1");
     }
 }
