@@ -1,10 +1,10 @@
 package study;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
@@ -35,5 +35,15 @@ public class SetTest {
     @DisplayName("요구사항2 : set의 contains()를 활용해 1,2,3 값이 존재하는지 확인하는 테스트")
     void confirmDataTest(int inputNumber) {
         assertThat(numbers.contains(inputNumber)).isTrue();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+    @DisplayName("요구사항3 : 요구사항 2는 contains 메소드 결과 값이 true인 경우만 테스트 가능하다. " +
+            "입력 값에 따라 결과값이 다른 경우에 대한 테스트")
+    void confirmDataTest2(String input, String expected) {
+        int inputNumber = Integer.parseInt(input);
+        String resultText = String.valueOf(numbers.contains(inputNumber));
+        assertThat(resultText).isEqualTo(expected);
     }
 }
