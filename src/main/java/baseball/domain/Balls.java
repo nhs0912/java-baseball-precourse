@@ -11,7 +11,7 @@ import java.util.Set;
 public class Balls {
     private List<Ball> ballList;
 
-    public Balls(){
+    public Balls() {
         ballList = new ArrayList<>();
     }
 
@@ -30,7 +30,7 @@ public class Balls {
         return this.ballList;
     }
 
-    public int size(){
+    public int size() {
         return this.ballList.size();
     }
 

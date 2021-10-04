@@ -1,5 +1,8 @@
 package baseball.view;
 
+import baseball.domain.Numeral;
+import baseball.exception.MyErrorCode;
+import baseball.exception.MyException;
 import nextstep.utils.Console;
 
 public class InputView {
@@ -26,7 +29,15 @@ public class InputView {
     }
 
     private String inputGameRestartOrQuit() {
-        return Console.readLine();
+        String inputGameRestart = Console.readLine();
+        if (!validInputGameStart(inputGameRestart)) {
+            throw new MyException(MyErrorCode.INVALID_INPUT_GAME_RESTART);
+        }
+        return inputGameRestart;
+    }
+
+    private boolean validInputGameStart(String inputGameRestart) {
+        return inputGameRestart.equals(Numeral.ONE.numberText()) || inputGameRestart.equals(Numeral.TWO.numberText());
     }
 
 }
