@@ -28,6 +28,16 @@ public class Application {
         } while (isReGame(gameRestart));
     }
 
+    private static Balls makeUserBalls(InputView inputView) {
+        Balls userBalls = new Balls();
+        UserBallService userBallService = new UserBallService();
+        while (userBalls.size() != Numeral.THREE.number()) {
+            String numberText = inputView.sayInputNumbers();
+            userBalls = userBallService.makeBalls(numberText, userBalls);
+        }
+        return userBalls;
+    }
+
     private static void solveNumberGame(Balls computerBalls) {
         Result result = new Result();
         while (result.strikeCount() != Numeral.THREE.number()) {
@@ -58,16 +68,6 @@ public class Application {
 
     private static boolean isReGame(String gameRestart) {
         return gameRestart.equals(Numeral.ONE.numberText());
-    }
-
-    public static Balls makeUserBalls(InputView inputView) {
-        Balls userBalls = new Balls();
-        UserBallService userBallService = new UserBallService();
-        while (userBalls.size() != Numeral.THREE.number()) {
-            String numberText = inputView.sayInputNumbers();
-            userBalls = userBallService.makeBalls(numberText, userBalls);
-        }
-        return userBalls;
     }
 
     private static boolean validInputGameStart(String inputGameRestart) {
