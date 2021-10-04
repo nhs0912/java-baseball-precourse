@@ -1,21 +1,20 @@
 package baseball.view;
 
-public class OutputView {
-    private static final int THREE = 3;
-    private static final int ZERO = 0;
+import baseball.domain.Numeral;
 
+public class OutputView {
     public void printGameResult(int strikeCount, int ballCount) {
         printCheckStrikeAndBall(strikeCount, ballCount);
-        if (strikeCount == THREE) {
+        if (strikeCount == Numeral.THREE.number()) {
             printThreeStrike();
         }
     }
 
     private void printCheckStrikeAndBall(int strikeCount, int ballCount) {
-        if (strikeCount > ZERO) {
+        if (strikeCount > Numeral.ZERO.number()) {
             System.out.print(strikeCount + "스트라이크 ");
         }
-        if (ballCount > ZERO) {
+        if (ballCount > Numeral.ZERO.number()) {
             System.out.print(ballCount + "볼");
         }
         System.out.println();

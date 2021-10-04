@@ -3,7 +3,6 @@ package baseball.view;
 import nextstep.utils.Console;
 
 public class InputView {
-
     public String sayInputNumbers() {
         printMentionInputNumbers();
         return inputNumbers();
