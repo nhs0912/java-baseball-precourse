@@ -23,13 +23,11 @@ class RefereeTest {
     void checkTwoStrikeResult() {
         List<Ball> userBallList = Arrays.asList(new Ball(one), new Ball(two), new Ball(three));
         Balls userBalls = new Balls(userBallList);
-        User user = new User(userBalls);
 
         List<Ball> computerBallList = Arrays.asList(new Ball(one), new Ball(four), new Ball(three));
         Balls computerBalls = new Balls(computerBallList);
-        Computer computer = new Computer(computerBalls);
 
-        Referee referee = new Referee(computer, user);
+        Referee referee = new Referee(computerBalls, userBalls);
         Result result = referee.checkResult();
 
         assertAll(
@@ -43,13 +41,11 @@ class RefereeTest {
     void checkOneStrikeOneBallResult() {
         List<Ball> userBallList = Arrays.asList(new Ball(one), new Ball(two), new Ball(three));
         Balls userBalls = new Balls(userBallList);
-        User user = new User(userBalls);
 
         List<Ball> computerBallList = Arrays.asList(new Ball(one), new Ball(four), new Ball(two));
         Balls computerBalls = new Balls(computerBallList);
-        Computer computer = new Computer(computerBalls);
 
-        Referee referee = new Referee(computer, user);
+        Referee referee = new Referee(computerBalls, userBalls);
         Result result = referee.checkResult();
 
         assertAll(
@@ -63,13 +59,11 @@ class RefereeTest {
     void checkZeroStrikeThreeBallResult() {
         List<Ball> userBallList = Arrays.asList(new Ball(three), new Ball(two), new Ball(one));
         Balls userBalls = new Balls(userBallList);
-        User user = new User(userBalls);
 
         List<Ball> computerBallList = Arrays.asList(new Ball(one), new Ball(three), new Ball(two));
         Balls computerBalls = new Balls(computerBallList);
-        Computer computer = new Computer(computerBalls);
 
-        Referee referee = new Referee(computer, user);
+        Referee referee = new Referee(computerBalls, userBalls);
         Result result = referee.checkResult();
 
         assertAll(
@@ -83,13 +77,11 @@ class RefereeTest {
     void checkThreeStrikeZeroBallResult() {
         List<Ball> userBallList = Arrays.asList(new Ball(one), new Ball(two), new Ball(three));
         Balls userBalls = new Balls(userBallList);
-        User user = new User(userBalls);
 
         List<Ball> computerBallList = Arrays.asList(new Ball(one), new Ball(two), new Ball(three));
         Balls computerBalls = new Balls(computerBallList);
-        Computer computer = new Computer(computerBalls);
 
-        Referee referee = new Referee(computer, user);
+        Referee referee = new Referee(computerBalls, userBalls);
         Result result = referee.checkResult();
 
         assertAll(
@@ -103,13 +95,11 @@ class RefereeTest {
     void checkZeroStrikeZeroBallResult() {
         List<Ball> userBallList = Arrays.asList(new Ball(one), new Ball(two), new Ball(three));
         Balls userBalls = new Balls(userBallList);
-        User user = new User(userBalls);
 
         List<Ball> computerBallList = Arrays.asList(new Ball(four), new Ball(five), new Ball(six));
         Balls computerBalls = new Balls(computerBallList);
-        Computer computer = new Computer(computerBalls);
 
-        Referee referee = new Referee(computer, user);
+        Referee referee = new Referee(computerBalls, userBalls);
         Result result = referee.checkResult();
 
         assertAll(

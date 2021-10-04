@@ -11,6 +11,10 @@ public class OutputView {
     }
 
     private void printCheckStrikeAndBall(int strikeCount, int ballCount) {
+        if (strikeCount == 0 && ballCount == 0) {
+            System.out.println("낫싱");
+        }
+
         if (strikeCount > Numeral.ZERO.number()) {
             System.out.print(strikeCount + "스트라이크 ");
         }

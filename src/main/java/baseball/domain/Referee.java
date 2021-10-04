@@ -3,20 +3,18 @@ package baseball.domain;
 import java.util.List;
 
 public class Referee {
-    private Computer computer;
-    private User user;
+    private Balls computerBalls;
+    private Balls userBalls;
     private int strikeCount;
     private int ballCount;
 
-    public Referee(Computer computer, User user) {
-        this.computer = computer;
-        this.user = user;
+    public Referee(Balls computerBalls, Balls userBalls) {
+        this.computerBalls = computerBalls;
+        this.userBalls = userBalls;
     }
 
     public Result checkResult() {
         initCount();
-        Balls computerBalls = computer.balls();
-        Balls userBalls = user.balls();
         return compareBall(computerBalls, userBalls);
     }
 
@@ -58,9 +56,11 @@ public class Referee {
     private boolean addCountStrikeAndBall(int computerIndex, int userIndex) {
         if (computerIndex == userIndex) {
             strikeCount++;
-            return true;
         }
-        ballCount++;
+
+        if (computerIndex != userIndex) {
+            ballCount++;
+        }
         return true;
     }
 
