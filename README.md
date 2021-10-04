@@ -25,8 +25,8 @@
 
 ### Referee
     User와 Computer가 가지고 있는 Ball을 판단해서 스트라이크, 볼을 체크한다.
-* private Balls userBalls
-* private Balls computerBalls
+* private Computer computer
+* private User user
 * public Result checkResult()
 * private int checkStrike()
 * private int checkBall()
