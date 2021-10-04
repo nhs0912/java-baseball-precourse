@@ -12,7 +12,7 @@ public class Number {
         this.number = number;
     }
 
-    public int Number(){
+    public int number() {
         return this.number;
     }
 

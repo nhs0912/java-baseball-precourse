@@ -15,7 +15,7 @@ class NumberTest {
     @DisplayName("1~9사이의 Number가 생성되는지 테스트")
     void createNumberSuccess() {
         Number number = new Number(1);
-        assertThat(number.Number()).isEqualTo(1);
+        assertThat(number.number()).isEqualTo(1);
     }
 
     @ParameterizedTest
