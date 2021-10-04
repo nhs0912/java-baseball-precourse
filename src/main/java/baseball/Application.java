@@ -12,17 +12,31 @@ import baseball.view.OutputView;
 
 public class Application {
 
-    private static InputView inputView = new InputView();
-    private static OutputView outputView = new OutputView();
+    private static InputView inputView;
+    private static OutputView outputView;
 
     public static void main(String[] args) {
+        inputView = new InputView();
+        outputView = new OutputView();
         String gameRestart;
         ComputerBallService computerBallService = new ComputerBallService();
+
         do {
             Balls computerBalls = computerBallService.makeBalls();
             solveNumberGame(computerBalls);
             gameRestart = repeatInputGameRestart();
         } while (isReGame(gameRestart));
+    }
+
+    private static void solveNumberGame(Balls computerBalls) {
+        Result result = new Result();
+        while (result.strikeCount() != Numeral.THREE.number()) {
+            Balls userBalls = makeUserBalls(inputView);
+
+            Referee referee = new Referee(computerBalls, userBalls);
+            result = referee.checkResult();
+            outputView.printGameResult(result.strikeCount(), result.ballCount());
+        }
     }
 
     private static String repeatInputGameRestart() {
@@ -39,17 +53,6 @@ public class Application {
         } catch (MyException e) {
             System.out.println(e.getMessage());
             return Numeral.ZERO.numberText();
-        }
-    }
-
-    private static void solveNumberGame(Balls computerBalls) {
-        Result result = new Result();
-        while (result.strikeCount() != Numeral.THREE.number()) {
-            Balls userBalls = makeUserBalls(inputView);
-
-            Referee referee = new Referee(computerBalls, userBalls);
-            result = referee.checkResult();
-            outputView.printGameResult(result.strikeCount(), result.ballCount());
         }
     }
 
