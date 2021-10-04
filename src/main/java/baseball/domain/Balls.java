@@ -34,6 +34,15 @@ public class Balls {
         return this.ballList.size();
     }
 
+    private List<Ball> makeThreeBalls(String numberText) {
+        List<Ball> newBallList = new ArrayList<>();
+        for (int i = 0; i < numberText.length(); i++) {
+            Ball newBall = new Ball(numberText.charAt(i));
+            newBallList.add(newBall);
+        }
+        return newBallList;
+    }
+
     private void validInputValue(List<Ball> ballList) {
         validSizeOfBalls(ballList);
         checkDuplicateNumber(ballList);
@@ -62,15 +71,6 @@ public class Balls {
         if (checkNotThreeCountOfBalls(ballNumbers)) {
             throw new MyException(MyErrorCode.BALL_HAS_DUPLICATE_NUMBER);
         }
-    }
-
-    private List<Ball> makeThreeBalls(String numberText) {
-        List<Ball> newBallList = new ArrayList<>();
-        for (int i = 0; i < numberText.length(); i++) {
-            Ball newBall = new Ball(numberText.charAt(i));
-            newBallList.add(newBall);
-        }
-        return newBallList;
     }
 
 }
