@@ -24,7 +24,7 @@ public class Application {
         do {
             Balls computerBalls = computerBallService.makeBalls();
             solveNumberGame(computerBalls);
-            gameRestart = repeatInputGameRestart();
+            gameRestart = inputGameRestart();
         } while (isReGame(gameRestart));
     }
 
@@ -56,7 +56,7 @@ public class Application {
         return referee.checkResult();
     }
 
-    private static String repeatInputGameRestart() {
+    private static String inputGameRestart() {
         String gameRestart;
         do {
             gameRestart = inputGameRestartText();
