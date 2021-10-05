@@ -28,25 +28,32 @@ public class Application {
         } while (isReGame(gameRestart));
     }
 
+    private static void solveNumberGame(Balls computerBalls) {
+        Result result = new Result();
+        while (result.strikeCount() != Numeral.THREE.number()) {
+            Balls userBalls = makeUserBalls(inputView);
+            result = calculateResult(computerBalls, userBalls);
+            outputView.printGameResult(result.strikeCount(), result.ballCount());
+        }
+    }
+
     private static Balls makeUserBalls(InputView inputView) {
         Balls userBalls = new Balls();
         UserBallService userBallService = new UserBallService();
-        while (userBalls.size() != Numeral.THREE.number()) {
+        while (isOut(userBalls)) {
             String numberText = inputView.sayInputNumbers();
             userBalls = userBallService.makeBalls(numberText, userBalls);
         }
         return userBalls;
     }
 
-    private static void solveNumberGame(Balls computerBalls) {
-        Result result = new Result();
-        while (result.strikeCount() != Numeral.THREE.number()) {
-            Balls userBalls = makeUserBalls(inputView);
+    private static boolean isOut(Balls userBalls) {
+        return userBalls.size() != Numeral.THREE.number();
+    }
 
-            Referee referee = new Referee(computerBalls, userBalls);
-            result = referee.checkResult();
-            outputView.printGameResult(result.strikeCount(), result.ballCount());
-        }
+    private static Result calculateResult(Balls computerBalls, Balls userBalls) {
+        Referee referee = new Referee(computerBalls, userBalls);
+        return referee.checkResult();
     }
 
     private static String repeatInputGameRestart() {
