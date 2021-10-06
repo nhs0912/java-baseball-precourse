@@ -11,7 +11,6 @@ public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
         String regameText = INIT_REGAME_VALUE;
-
         while (isReGame(regameText)) {
             regameText = startGame(inputView, regameText);
         }
@@ -30,9 +29,5 @@ public class Application {
 
     private static boolean isReGame(String gameRestart) {
         return gameRestart.equals(Numeral.ONE.numberText());
-    }
-
-    private static boolean validInputGameStart(String inputGameRestart) {
-        return inputGameRestart.equals(Numeral.ONE.numberText()) || inputGameRestart.equals(Numeral.TWO.numberText());
     }
 }

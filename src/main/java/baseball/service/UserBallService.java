@@ -5,14 +5,8 @@ import baseball.exception.MyException;
 
 public class UserBallService {
 
-    public Balls makeBalls(String numberText) {
-        Balls userBalls = new Balls();
-        try {
-            userBalls = new Balls(numberText);
-        } catch (MyException e) {
-            System.out.println(e.getMessage());
-        }
-        return userBalls;
+    public Balls makeBalls(String numberText) throws MyException {
+        return new Balls(numberText);
     }
 
 }

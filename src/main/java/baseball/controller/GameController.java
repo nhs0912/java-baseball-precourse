@@ -1,9 +1,6 @@
 package baseball.controller;
 
-import baseball.domain.Balls;
-import baseball.domain.Numeral;
-import baseball.domain.Referee;
-import baseball.domain.Result;
+import baseball.domain.*;
 import baseball.exception.MyException;
 import baseball.service.ComputerBallService;
 import baseball.service.UserBallService;
@@ -17,21 +14,16 @@ public class GameController {
     public void start() {
         ComputerBallService computerBallService = new ComputerBallService();
         Balls computerBalls = computerBallService.makeBalls();
-
         Result result = new Result();
-        while (result.strikeCount() != Numeral.THREE.number()) {
+        while (!isThreeStrike(result)) {
             try {
-                result = guessComputerBalls(computerBalls);
+                Balls userBalls = makeUserBalls();
+                result = calculateResult(computerBalls, userBalls);
+                outputView.printGameResult(result.strikeCount(), result.ballCount());
             } catch (MyException e) {
                 System.out.println(e.getMessage());
             }
-            outputView.printGameResult(result.strikeCount(), result.ballCount());
         }
-    }
-
-    private Result guessComputerBalls(Balls computerBalls) {
-        Balls userBalls = makeUserBalls();
-        return calculateResult(computerBalls, userBalls);
     }
 
     private Result calculateResult(Balls computerBalls, Balls userBalls) {
@@ -42,7 +34,10 @@ public class GameController {
     private Balls makeUserBalls() {
         String inputNumbers = inputView.sayInputNumbers();
         UserBallService userBallService = new UserBallService();
-        Balls userBalls = userBallService.makeBalls(inputNumbers);
-        return userBalls;
+        return userBallService.makeBalls(inputNumbers);
+    }
+
+    private boolean isThreeStrike(Result result) {
+        return result.strikeCount() == Numeral.THREE.number();
     }
 }
